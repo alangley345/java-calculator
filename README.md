@@ -1,2 +1,2 @@
 # java-calculator
-Foray into JavaFX 
+Foray into Java SWT
