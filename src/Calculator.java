@@ -16,20 +16,20 @@ public class Calculator {
 		shell.setText("Java Calculator");
 		shell.setSize(400,500);
 		
-		//composite for buttons
-		shell.setLayout(new GridLayout());
-	    final Composite composite = new Composite(shell, SWT.NONE);
-	    GridLayout grid = new GridLayout();
-	    grid.numColumns = 3;
-	    composite.setLayout(grid);
-	    
-	    Text disWindow = new Text(composite, 0);
-	    GridData gridData = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
-	    gridData.horizontalSpan = 3;
+		
+	    //display
+	    GridData gridData = new GridData(SWT.FILL, SWT.BEGINNING, true, false);
+	    gridData.horizontalSpan = 2;
+	    Text disWindow = new Text(shell, 0);
 	    disWindow.setLayoutData(gridData);
-
-	 
 	    
+	    //composite for buttons
+	  	shell.setLayout(new GridLayout());
+	  	final Composite composite = new Composite(shell, SWT.NONE);
+	  	GridLayout grid = new GridLayout();
+	  	grid.numColumns = 3;
+	  	composite.setLayout(grid);
+	  
 	    //adding buttons
 	    int buttonX    = 10;
 	    int buttonY    = 10;
