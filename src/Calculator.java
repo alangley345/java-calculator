@@ -15,7 +15,6 @@ public class Calculator {
 		String title        = "Java Calculator";
 		int    width        = 400;
 		int    height       = 500;
-		//float  valueHolder  = 0;
 		String storedValue = "";
 		
 		Display display = new Display();
@@ -50,10 +49,10 @@ public class Calculator {
 		OperatorButton plusButton = new OperatorButton(composite, disWindow, "+", storedValue);
 		
 		shell.open();
+		
 		while(!shell.isDisposed())
 			if (!display.readAndDispatch())
 				display.sleep();
 		display.dispose();
 	}
-
 }
