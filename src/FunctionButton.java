@@ -7,23 +7,22 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
-public class OperatorButton {
-	
-	public OperatorButton(Composite composite, Text display, String buttonLabel, String storedValue){
+public class FunctionButton {
+
+	public FunctionButton(Composite composite, Text display, String buttonLabel){
 		Button button = new Button(composite,SWT.PUSH);
 		button.setText(buttonLabel);
 		button.addListener(SWT.Selection, (Listener) new Listener()
 	  	{
 	  	    public void handleEvent(Event event)
 	  	    {
-	  	    	
-	  	        display.setText(display.getText() + buttonLabel);  
+	  	    	if (buttonLabel.equals("%")) {
+	  	    		float input = Float.parseFloat(display.getText());
+	  	    		display.setText("");
+	  	    		display.setText(String.valueOf(input/100));
+	  	    	}
 	  	    }
 	  	});
 	}
 	
-	void buttonAction(String storedValue, String displayValue) {
-		String temp = storedValue + displayValue;
-		System.out.println(temp);
-	}
 }
