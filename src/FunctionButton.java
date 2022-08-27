@@ -17,9 +17,29 @@ public class FunctionButton {
 	  	    public void handleEvent(Event event)
 	  	    {
 	  	    	if (buttonLabel.equals("%")) {
+	  	    		try {
 	  	    		float input = Float.parseFloat(display.getText());
 	  	    		display.setText("");
 	  	    		display.setText(String.valueOf(input/100));
+	  	    		}
+	  	    		catch (java.lang.NumberFormatException n) {
+	  	    			System.out.println("Incorrect number format");
+	  	    		}
+	  	    	}
+	  	    	
+	  	    	if (buttonLabel.equals("=")) {
+	  	    		try {
+		  	    		float input = Float.parseFloat(display.getText());
+		  	    		display.setText("");
+		  	    		display.setText(String.valueOf(input/100));
+		  	    		}
+		  	    		catch (java.lang.NumberFormatException n) {
+		  	    			System.out.println("Incorrect number format");
+		  	    		}
+	  	    	}
+	  	    	
+	  	    	if (buttonLabel.equals("C")) {
+	  	    		display.setText("");
 	  	    	}
 	  	    }
 	  	});
