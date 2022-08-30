@@ -9,11 +9,19 @@ import org.eclipse.swt.widgets.Text;
 
 public class OperatorButton {
 	
-	String storedValue="";
+	String storedValue    = "";
+	String storedOperator = "";
 	
-	public void ReturnValue() {
-		System.out.println(internalValue);
+	private void checkValues() {
+		System.out.println(storedValue);
+		System.out.println(storedOperator);
 	}
+	
+	public void storeValue(Text display) {
+		storedValue    = display.getText();
+		display.setText("");
+	}
+	
 	
 	public OperatorButton(Composite composite, Text display, String buttonLabel){
 		Button button = new Button(composite,SWT.PUSH);
@@ -22,27 +30,66 @@ public class OperatorButton {
 	  	{
 	  	    public void handleEvent(Event event)
 	  	    {
-	  	    	if (buttonLabel.equals("+")) {
+	  	    	
+	  	    	if (buttonLabel.equals("+") ) {
+	  	    		if (display.getText().equals("")) {
+	  	    			System.out.println("Display is blank");
+	  	    		}
+	  	    		else {
+	  	    			storedOperator = "+";
+	  	    			storedValue    = display.getText();
+	  	    			display.setText("");
+	  	    		}
+		  	    	
+	  	    	}
+	  	    	
+	  	    	if (buttonLabel.equals("-")) {
+	  	    		if (display.getText().equals("")) {
+	  	    			System.out.println("Display is blank");
+	  	    		}
+	  	    		else {
+	  	    			storedOperator = "-";
+	  	    			storedValue    = display.getText();
+	  	    			display.setText("");
+	  	    		}
+		  	    	
+	  	    	}
+	  	    	
+	  	    	if (buttonLabel.equals("x")) {
+	  	    		if (display.getText().equals("")) {
+	  	    			System.out.println("Display is blank");
+	  	    		}
+	  	    		else {
+	  	    			storedOperator = "x";
+	  	    		}
+		  	    	
+	  	    	}
+	  	    	
+	  	    	if (buttonLabel.equals(Character.toString('\u00F7'))) {
+	  	    		if (display.getText().equals("")) {
+	  	    			System.out.println("Display is blank");
+	  	    		}
+	  	    		else {
+	  	    			storedOperator = "/";
+	  	    		}
+		  	    	
+	  	    	}
+	  	    	
+	  	    	
+	  	    	if (buttonLabel.equals("=")) {
 	  	    		if (storedValue.equals("")) {
-	  	    			storedValue = display.getText();
+	  	    			System.out.println("Display is blank");
 	  	    		}
 	  	    		else {
 	  	    			float storedFloat  = Float.parseFloat(storedValue);
 	  	    			float displayFloat = Float.parseFloat(display.getText());
-	  	    			float newValue     = 
 	  	    		}
 		  	    	
 	  	    	}
-	  	    	ReturnValue();
+	  	    	
+	  	    	checkValues();
 	  	    	
 	  	    }
 	  	});
-	}
-		
-	
-	
-	void buttonAction(String storedValue, String displayValue) {
-		String temp = storedValue + displayValue;
-		System.out.println(temp);
 	}
 }
