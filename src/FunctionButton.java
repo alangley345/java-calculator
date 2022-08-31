@@ -9,8 +9,10 @@ import org.eclipse.swt.widgets.Text;
 
 public class FunctionButton {
 	
-	String M1 = "";
-    String M2 = ""; 
+	String m1     = "";
+	boolean m1Set = false;
+    String m2     = "";
+    boolean m2Set = false;
 
 	public FunctionButton(Composite composite, Text display, String buttonLabel){
 		Button button = new Button(composite,SWT.PUSH);
@@ -31,15 +33,31 @@ public class FunctionButton {
 	  	    	}
 	  	    	
 	  	    	if (buttonLabel.equals("M1")) {
-	  	    		M1 = display.getText();
-	  	    		System.out.println(M1);
-	  	    		display.setText("");
+	  	    		if (m1Set == false) {
+	  	    			m1 = display.getText();
+	  	    			System.out.println(m1);
+	  	    			m1Set = true;
+	  	    			display.setText("");
+	  	    		}
+	  	    		else {
+	  	    			display.setText(m1); 
+	  	    			m1 = "";
+	  	    			m1Set = false;
+	  	    		}
 	  	    	}
 	  	    	
 	  	    	if (buttonLabel.equals("M2")) { 
-	  	    		M2 = display.getText();
-	  	    		System.out.println(M2);
-	  	    		display.setText(""); 
+	  	    		if (m1Set == false) {
+	  	    			m1 = display.getText();
+	  	    			System.out.println(m1);
+	  	    			m1Set = true;
+	  	    			display.setText("");
+	  	    		}
+	  	    		else {
+	  	    			display.setText(m1);
+	  	    			m1Set = false;
+	  	    			m1 = "";
+	  	    		}
 	  	    	}
 	  	    	
 	  	    	if (buttonLabel.equals("C")) {

@@ -4,10 +4,36 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Button;
+ 
 
 public class Calculator {     	
+	
+	public static String storeValue(Text display) {
+		String methodValue = "";
+		
+		try {
+			methodValue = display.getText();
+			System.out.println(methodValue);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		display.setText("");
+		return methodValue;
+	}
+	
+	public static void resultEquation(Text display) {
+		try {
+			display.setText("");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+		
 	
 	public static void main(String[] args) {
 		//display variables
@@ -17,9 +43,6 @@ public class Calculator {
 		
 		//button UTF codes
 		char divisorSymbol  = '\u00F7';
-		
-		//storage variables
-		String storedValue = "";
 		
 		Display display = new Display();
 		Shell shell     = new Shell(display);
@@ -33,6 +56,8 @@ public class Calculator {
         disWindow.setEditable(false);
         disWindow.setText("");
 		
+        String memValue = storeValue(disWindow);
+        
 		//composite for buttons
 		final Composite composite = new Composite(shell, SWT.NONE);
 		GridLayout grid = new GridLayout();
@@ -58,8 +83,20 @@ public class Calculator {
 		NumberButton buttonPeriod       = new NumberButton(composite, disWindow, ".");
 		FunctionButton buttonPercent    = new FunctionButton(composite, disWindow, "%");
 		OperatorButton plusButton       = new OperatorButton(composite, disWindow, "+");
-		OperatorButton buttonEquals     = new OperatorButton(composite, disWindow, "=");
 		
+		//equals button
+		Button buttonEquals             = new Button(composite,SWT.PUSH);
+		buttonEquals.setText("=");
+		buttonEquals.addListener(SWT.Selection, (Listener) new Listener()
+	  	{
+	  	    public void handleEvent(Event event)
+	  	    {
+	  	    	System.out.println(memValue);
+	  	    	
+	  	    }
+	  	    
+	  	});
+		 
 		shell.open();
 		
 		while(!shell.isDisposed())
