@@ -13,32 +13,14 @@ import org.eclipse.swt.widgets.Button;
 
 public class Calculator {     	
 	
-	public static String storeValue(Text display) {
-		String methodValue = "";
-		
-		try {
-			methodValue = display.getText();
-			System.out.println(methodValue);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		display.setText("");
-		return methodValue;
-	}
-	
-	public static void resultEquation(Text display) {
-		try {
-			display.setText("");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-		
-	
+	public static String num1 = "0";
+	public static String num2 = "0";
+	public static String operator = "";
+
 	public static void main(String[] args) {
 		//display variables
 		String title        = "Java Calculator";
-		int    width        = 230;
+		int    width        = 300;
 		int    height       = 300;
 		
 		//button UTF codes
@@ -55,8 +37,6 @@ public class Calculator {
         disWindow.setLayoutData(displayGrid);
         disWindow.setEditable(false);
         disWindow.setText("");
-		
-        String memValue = storeValue(disWindow);
         
 		//composite for buttons
 		final Composite composite = new Composite(shell, SWT.NONE);
@@ -64,25 +44,77 @@ public class Calculator {
 	  	grid.numColumns = 5;
 		composite.setLayout(grid);
 		
-		NumberButton button9            = new NumberButton(composite, disWindow, "9");
-		NumberButton button8            = new NumberButton(composite, disWindow, "8");
-		NumberButton button7            = new NumberButton(composite, disWindow, "7");
-		OperatorButton divideButton     = new OperatorButton(composite, disWindow, Character.toString(divisorSymbol));
+		CharacterButton button9         = new CharacterButton(composite, disWindow, "9");
+		CharacterButton button8         = new CharacterButton(composite, disWindow, "8");
+		CharacterButton button7         = new CharacterButton(composite, disWindow, "7");
+		
+		//divisor button
+		Button divideButton     = new Button(composite,SWT.PUSH);
+		divideButton.setText(Character.toString(divisorSymbol));
+		divideButton.addListener(SWT.Selection, (Listener) new Listener()
+		{
+			public void handleEvent(Event event)
+			{
+				num1 = disWindow.getText();
+				disWindow.setText("");
+				operator = "/";
+			}  	    
+		});
+	
 		FunctionButton buttonC          = new FunctionButton(composite, disWindow, "C");
-		NumberButton button6            = new NumberButton(composite, disWindow, "6");
-		NumberButton button5            = new NumberButton(composite, disWindow, "5");
-		NumberButton button4            = new NumberButton(composite, disWindow, "4");
-		OperatorButton multiplyButton   = new OperatorButton(composite, disWindow, "x");
+		CharacterButton button6         = new CharacterButton(composite, disWindow, "6");
+		CharacterButton button5         = new CharacterButton(composite, disWindow, "5");
+		CharacterButton button4         = new CharacterButton(composite, disWindow, "4");
+		
+		//multiply button
+		Button multiplyButton     = new Button(composite,SWT.PUSH);
+		multiplyButton.setText("x");
+		multiplyButton.addListener(SWT.Selection, (Listener) new Listener()
+		{
+			public void handleEvent(Event event)
+			{
+				num1 = disWindow.getText();
+				disWindow.setText("");
+				operator = "*";
+			}
+					  	    
+		});
+		
 		FunctionButton buttonM1         = new FunctionButton(composite, disWindow, "M1");
-		NumberButton button3            = new NumberButton(composite, disWindow, "3");
-		NumberButton button2            = new NumberButton(composite, disWindow, "2");
-		NumberButton button1            = new NumberButton(composite, disWindow, "1");
-		OperatorButton minusButton      = new OperatorButton(composite, disWindow, "-");
+		CharacterButton button3         = new CharacterButton(composite, disWindow, "3");
+		CharacterButton button2         = new CharacterButton(composite, disWindow, "2");
+		CharacterButton button1         = new CharacterButton(composite, disWindow, "1");
+		
+		//minus button
+		Button minusButton     = new Button(composite,SWT.PUSH);
+		minusButton.setText("-");
+		minusButton.addListener(SWT.Selection, (Listener) new Listener()
+		{
+			public void handleEvent(Event event)
+			{
+				num1 = disWindow.getText();
+				disWindow.setText("");
+				operator = "-";
+			}				  	    
+		});
+		
 		FunctionButton buttonM2         = new FunctionButton(composite, disWindow, "M2");
-		NumberButton button0            = new NumberButton(composite, disWindow, "0");
-		NumberButton buttonPeriod       = new NumberButton(composite, disWindow, ".");
+		CharacterButton button0         = new CharacterButton(composite, disWindow, "0");
+		CharacterButton buttonPeriod    = new CharacterButton(composite, disWindow, ".");
 		FunctionButton buttonPercent    = new FunctionButton(composite, disWindow, "%");
-		OperatorButton plusButton       = new OperatorButton(composite, disWindow, "+");
+		
+		//addition button
+		Button addButton     = new Button(composite,SWT.PUSH);
+		addButton.setText("+");
+		addButton.addListener(SWT.Selection, (Listener) new Listener()
+		{
+			public void handleEvent(Event event)
+			{
+				num1 = disWindow.getText();
+				disWindow.setText("");
+				operator = "+";
+			}
+		});
 		
 		//equals button
 		Button buttonEquals             = new Button(composite,SWT.PUSH);
@@ -90,9 +122,33 @@ public class Calculator {
 		buttonEquals.addListener(SWT.Selection, (Listener) new Listener()
 	  	{
 	  	    public void handleEvent(Event event)
-	  	    {
-	  	    	System.out.println(memValue);
-	  	    	
+	  	    {	
+	  	    	if (disWindow.getText().equals("")) {
+	  	    	}
+	  	    	else{
+	  	    		num2 = disWindow.getText();
+	  	    		
+	  	    		//test logging
+	  	    		System.out.println(operator);
+  	    			System.out.println(num1);
+  	    			System.out.println(num2);
+  	    			
+	  	    		if (operator.equals("/")){
+	  	    			disWindow.setText(String.valueOf(Float.parseFloat(num1)/Float.parseFloat(num2)));
+	  	    		}
+	  	    		
+	  	    		if (operator.equals("*")){
+	  	    			disWindow.setText(String.valueOf(Float.parseFloat(num1)*Float.parseFloat(num2)));
+	  	    		}
+	  	    		
+	  	    		if (operator.equals("+")){
+	  	    			disWindow.setText(String.valueOf(Float.parseFloat(num1)+Float.parseFloat(num2)));
+	  	    		}
+	  	    		
+	  	    		if (operator.equals("-")){
+	  	    			disWindow.setText(String.valueOf(Float.parseFloat(num1)-Float.parseFloat(num2)));
+	  	    		}
+	  	    	}
 	  	    }
 	  	    
 	  	});

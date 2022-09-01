@@ -5,9 +5,9 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
-public class NumberButton {
+public class CharacterButton {
 
-	public NumberButton(Composite composite, Text display, String buttonLabel){
+	public CharacterButton(Composite composite, Text display, String buttonLabel){
 		Button button = new Button(composite,SWT.PUSH);
 		button.setText(buttonLabel);
 	  	button.addListener(SWT.Selection, (Listener) new Listener()
