@@ -23,9 +23,9 @@ public class FunctionButton {
 	  	    {
 	  	    	if (buttonLabel.equals("%")) {
 	  	    		try {
-	  	    		float input = Float.parseFloat(display.getText());
-	  	    		display.setText("");
-	  	    		display.setText(String.valueOf(input/100));
+	  	    			float input = Float.parseFloat(display.getText());
+	  	    			display.setText("");
+	  	    			display.setText(String.valueOf(input/100));
 	  	    		}
 	  	    		catch (java.lang.NumberFormatException n) {
 	  	    			System.out.println("Incorrect number format");
@@ -47,16 +47,16 @@ public class FunctionButton {
 	  	    	}
 	  	    	
 	  	    	if (buttonLabel.equals("M2")) { 
-	  	    		if (m1Set == false) {
-	  	    			m1 = display.getText();
-	  	    			System.out.println(m1);
-	  	    			m1Set = true;
+	  	    		if (m2Set == false) {
+	  	    			m2 = display.getText();
+	  	    			System.out.println(m2);
+	  	    			m2Set = true;
 	  	    			display.setText("");
 	  	    		}
 	  	    		else {
-	  	    			display.setText(m1);
-	  	    			m1Set = false;
-	  	    			m1 = "";
+	  	    			display.setText(m2);
+	  	    			m2Set = false;
+	  	    			m2 = "";
 	  	    		}
 	  	    	}
 	  	    	

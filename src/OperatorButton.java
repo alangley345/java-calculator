@@ -7,7 +7,8 @@ import org.eclipse.swt.widgets.Text;
 
 public class OperatorButton {
 	
-  	String storedOperator = "";
+	float num1;
+	float num2;
 	
 	public OperatorButton(Composite composite, Text display, String buttonLabel){
 		Button button = new Button(composite,SWT.PUSH);
@@ -17,25 +18,24 @@ public class OperatorButton {
 	  	    public void handleEvent(Event event)
 	  	    {  
 	  	    	if (display.getText().equals("")){
-	  	    		System.out.println("Display is blank");
-	  	    	}
-	  	    	
+		    		System.out.println("Display is blank");
+		    	}
+		    	
 	  	    	else {
-	  	    		switch(button.getText()) {
-	  	    			case "+": storedOperator = "+";
-	  	    				break;
-	  	    			case "-": storedOperator = "-";
-	  	    				break;
-	  	    			//case "x":  
-	  	    			//case Character.toString('\u00F7'):
-	  	    			
-	  	    		}
-	  	    	}
-	  	    	
-	  	    	Calculator.storeValue(display);
-	    		display.setText("");
-	  
-		  	    	
+		    		switch(button.getText()) {
+		    			case "+": num1 += Float.parseFloat(display.getText());
+		    				display.setText("");
+		    				break;
+		    			case "=": num2 = Float.parseFloat(display.getText());
+		    					  System.out.println(num1);
+		    					  display.setText(String.valueOf(num1 + num2));
+		    				break;
+		    			//case Character.toString('\u00F7'):
+		    			
+		    		}
+		    	}
+		    	System.out.println(num1);
+		    	System.out.println(num2); 
 	  	    }
 	  	});
 	}
