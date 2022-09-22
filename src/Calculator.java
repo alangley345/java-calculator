@@ -86,7 +86,7 @@ public class Calculator {
 		CharacterButton button1         = new CharacterButton(composite, disWindow, "1");
 		
 		//minus button
-		Button minusButton     = new Button(composite,SWT.PUSH);
+		Button minusButton              = new Button(composite,SWT.PUSH);
 		minusButton.setText("-");
 		minusButton.addListener(SWT.Selection, (Listener) new Listener()
 		{
